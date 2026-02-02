@@ -1,0 +1,11 @@
+<h2>بيع السيارة</h2>
+
+<form method="post">
+    {% csrf_token %}
+
+   
+    <label>قيمة البيع</label>
+    <input type="number" name="partial_profit" step="0.01" required>
+
+    <button type="submit">تأكيد البيع</button>
+</form>

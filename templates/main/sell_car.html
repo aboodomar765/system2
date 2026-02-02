@@ -1,0 +1,13 @@
+<h2>بيع السيارة</h2>
+
+<form method="post">
+    {% csrf_token %}
+
+    <label>تاريخ البيع</label>
+    <input type="date" name="sale_date" required>
+
+    <label>قيمة البيع</label>
+    <input type="number" name="sale_price" step="0.01" required>
+
+    <button type="submit">تأكيد البيع</button>
+</form>

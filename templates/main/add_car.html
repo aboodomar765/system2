@@ -1,0 +1,14 @@
+{% extends 'main/base.html' %}
+{% block title %}إضافة سيارة{% endblock %}
+
+{% block content %}
+<div class="box">
+    <h2>إضافة سيارة جديدة</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">حفظ</button>
+    </form>
+</div>
+{% endblock %}

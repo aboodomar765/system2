@@ -1,0 +1,22 @@
+{% extends 'main/base.html' %}
+{% block title %}الداش بورد{% endblock %}
+
+{% block content %}
+<div class="box">
+    <h2>الداش بورد المحاسبي</h2>
+
+    <form method="get">
+        من:
+        <input type="date" name="start">
+        إلى:
+        <input type="date" name="end">
+        <button type="submit">فلترة</button>
+    </form>
+</div>
+
+<div class="box">
+    <p>💵 مجموع الأرباح الجزئية: <strong>{{ total_partial_profit }}</strong></p>
+    <p>🧾 مجموع المصروفات: <strong>{{ total_expenses }}</strong></p>
+    <p>📈 صافي الربح: <strong>{{ net_profit }}</strong></p>
+</div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'main/base.html' %}
+{% block title %}السيارات المباعة{% endblock %}
+
+{% block content %}
+<div class="box">
+    <h2>السيارات المباعة</h2>
+    <form method="get">
+
+    من: <input type="date" name="start">
+    إلى: <input type="date" name="end">
+    <button>فلترة</button>
+    </form>
+
+
+    <table>
+        <tr>
+            <th>نوع السيارة</th>
+             <th>سنة الصنع</th>
+            <th>رقم الشاصي</th>
+            <th> التخليص</th>
+            <th>قيمة الشراء</th>
+            <th>تاريخ الشراء</th>
+            <th>قيمة البيع</th>
+            <th>تاريخ البيع </th>
+            <th>الربح الكلي</th>
+            <th>الربح الجزئي</th>
+            <th>الربح الجزئي</th>
+        </tr>
+
+        {% for car in cars %}
+        <tr>
+            <td>{{ car.name }}</td>
+            <td>{{ car.year }}</td>
+            <td>{{ car.chassis_number }}</td>
+            <td>{{car.CLEARANCE_CHOICES}}</td>
+            <td>{{ car.purchase_price }}</td>
+            <td>{{ car.purchase_date }}</td>
+            <td>{{ car.sale_price }}</td>
+            <td>{{ car.sale_date }}</td>
+            <td>{{ car.total_profit}}</td>
+            <td> <a href="{% url ' partial_profit' car.id %}">بيع السيارة</a></td>
+            <td>{{ car.partial_profit}}</td>
+            
+             
+           
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">لا توجد سيارات مباعة</td>
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
+
+
+
+{% endblock %}

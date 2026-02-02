@@ -1,0 +1,81 @@
+{% extends 'main/base.html' %}
+{% block title %}جميع السيارات{% endblock %}
+
+{% block content %}
+<div class="box">
+    <h2>قائمة السيارات</h2>
+
+    <form method="get">
+        نوع السيارة:
+        <input type="text" name="car_type">
+
+        رقم الشاصي:
+        <input type="text" name="chassis">
+
+        الحالة:
+        <select name="status">
+            <option value="">الكل</option>
+            <option value="unsold">غير مباع</option>
+            <option value="sold">مباع</option>
+        </select>
+
+        <button type="submit">بحث</button>
+
+        <button onclick="printRow(this)">طباعة</button>
+      
+        
+    </form>
+</div>
+
+<div class="box">
+    <table>
+        <tr>
+            <th>نوع السيارة</th>
+            <th>سنة الصنع</th>
+            <th>رقم الشاصي</th>
+            <th> التخليص</th>
+            <th>قيمة الشراء</th>
+            <th>تاريخ الشراء</th>
+            <th>الحالة</th>
+            <th>البيع</th>
+            <th>حذف المركبة</th>
+ 
+       
+        </tr>
+
+        {% for car in cars %}
+        <tr>
+            <td>{{ car.name }}</td>
+            <td>{{ car.year }}</td>
+            <td>{{ car.chassis_number }}</td>
+            <td>{{car.CLEARANCE_CHOICES}}</td>
+            <td>{{ car.purchase_price }}</td>
+            <td>{{ car.sale_date }}</td>
+            <td>{{ car.get_status_display }}</td>
+             
+
+            <td> <a href="{% url 'sell_car' car.id %}">بيع السيارة</a></td>
+             <td><form action="{% url 'delete_car' car.id %}" method="post" style="display: block;">
+                      {% csrf_token %}
+             <button type="submit" onclick="return confirm('هل أنت متأكد من حذف السيارة؟')">
+                         حذف
+             </button></td>
+    
+ 
+         
+        
+        </tr>
+
+        {% empty %}
+        <tr>
+            <td colspan="5">لا توجد بيانات</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+   
+</form>
+</div>
+
+{% endblock %}
+
